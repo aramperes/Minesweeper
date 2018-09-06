@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+echo Cleaning past files...
+rm -r classes/ || true
+
+echo Creating directory...
+mkdir classes/
+
+echo Compiling...
+find src/ -name "*.java" -print | xargs javac -d classes/
+
+echo Copying resources...
+cp src/*.wav classes/.
+
+echo DONE
