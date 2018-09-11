@@ -143,8 +143,8 @@ public class MinesweeperGameFrame extends JFrame {
                         if (isMine(finalButtonIndex)) {
                             correctFlagCount++;
                         }
-                        // If we have marked all bombs correctly, win the game
-                        if (correctFlagCount == MINE_COUNT) {
+                        // If the entire board except the mines are disabled, we win the game
+                        if (isBoardClear()) {
                             triggerGameResult(true);
                         }
                     }
@@ -282,5 +282,19 @@ public class MinesweeperGameFrame extends JFrame {
      */
     private int convertPoint(Point point) {
         return point.y * GAME_SIZE + point.x;
+    }
+
+    /**
+     * Loops through the entire board and checks if each button except for the mines are disabled
+     */
+    private boolean isBoardClear() {
+        for (int i = 0; i <= this.gameButtons.length; i++) {
+          if(!this.gameButtons[i].isEnabled() && !this.mineMap[i]) {
+            return true;
+            continue;
+          }
+          else return false;
+          break;
+        }
     }
 }
