@@ -143,10 +143,6 @@ public class MinesweeperGameFrame extends JFrame {
                         if (isMine(finalButtonIndex)) {
                             correctFlagCount++;
                         }
-                        // If the entire board except the mines are disabled, we win the game
-                        if (isBoardClear()) {
-                            triggerGameResult(true);
-                        }
                     }
                     // Toggle flag state
                     flagMap[finalButtonIndex] = !flagMap[finalButtonIndex];
@@ -173,6 +169,9 @@ public class MinesweeperGameFrame extends JFrame {
                 // Count mines around
                 int minesAround = countMinesAround(position);
                 button.setEnabled(false);
+                if (isBoardClear()) {
+                            triggerGameResult(true);
+                }
                 if (minesAround > 0) {
                     // Show surrounding mines count
                     button.setText(String.valueOf(minesAround));
@@ -288,13 +287,11 @@ public class MinesweeperGameFrame extends JFrame {
      * Loops through the entire board and checks if each button except for the mines are disabled
      */
     private boolean isBoardClear() {
-        for (int i = 0; i <= this.gameButtons.length; i++) {
-          if(!this.gameButtons[i].isEnabled() && !this.mineMap[i]) {
-            return true;
-            continue;
+        for (int i = 0; i < this.gameButtons.length; i++) {
+          if(this.gameButtons[i].isEnabled() && !this.mineMap[i]) {
+            return false;
           }
-          else return false;
-          break;
         }
+        return true;
     }
 }
