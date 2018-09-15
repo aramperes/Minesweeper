@@ -170,7 +170,7 @@ public class MinesweeperGameFrame extends JFrame {
                 int minesAround = countMinesAround(position);
                 button.setEnabled(false);
                 if (isBoardClear()) {
-                            triggerGameResult(true);
+                    triggerGameResult(true);
                 }
                 if (minesAround > 0) {
                     // Show surrounding mines count

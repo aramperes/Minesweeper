@@ -3,7 +3,7 @@
 ## Team Members
 
 * Aram Peres
-* Ghili Weld
+* Ghilia Weldesselasie
 
 ## Course
 420-203-RE (section 00001)
